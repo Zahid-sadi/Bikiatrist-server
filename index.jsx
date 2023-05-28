@@ -48,6 +48,21 @@ async function run() {
     });
 
     // orders api 
+    app.get('/orders', async(req, res)=>{
+      let query = {};
+      if(req.query.email){
+        query = {
+          email: req.query.email
+        }
+      }
+      const cursor = orders.find(query);
+      const result = await cursor.toArray()
+      res.send(result) 
+    });
+
+  
+
+
 
     app.post('/orders', async(req, res )=>{
       const order = req.body;
